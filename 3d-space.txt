@@ -1,0 +1,49 @@
+/ Author: Zuhayer Tashin
+// Course: CSCI-135
+// Instructor: Tong Yi
+// Assignment: Lab 9A
+// Write a program 3d-space.cpp, in which you define a function length() 
+// that receives the coordinates of a point P passed as a pointer, 
+// and computes the distance from the origin to the point P:
+// LAB 9B
+// In the same file 3d-space.cpp, add a function
+// Coord3D * fartherFromOrigin(Coord3D *p1, Coord3D *p2);
+// Which receives the coordinates of two points (passed as pointers), 
+// and returns the pointer of the point that is farther away from the origin.
+
+#include <iostream>
+#include <cstdlib>
+#include <algorithm>
+#include <math.h>
+using namespace std;
+
+class Coord3D {
+public:
+    double x;
+    double y;
+    double z;
+};
+
+
+Coord3D * fartherFromOrigin(Coord3D *p1, Coord3D *p2){
+    double dist1 = sqrt(p1->x * p1->x + p1->y * p1->y + p1->z * p1->z);
+    double dist2 = sqrt(p2->x * p2->x + p2->y * p2->y + p2->z * p2->z);
+
+    // Compare distances and return the pointer to the point with the greater distance
+    return (dist1 > dist2) ? p1 : p2;
+
+}
+
+
+
+int main() {
+    Coord3D pointP = {10, 20, 30};
+    Coord3D pointQ = {-20, 21, -22};
+
+    cout << "Address of P: " << &pointP << endl;
+    cout << "Address of Q: " << &pointQ << endl << endl;
+
+    Coord3D * ans = fartherFromOrigin(&pointP, &pointQ);
+   
+    cout << "ans = " << ans << endl; // So which point is farther?
+}
